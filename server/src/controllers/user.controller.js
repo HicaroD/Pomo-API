@@ -1,5 +1,6 @@
 const create = (req, res) => {
-    res.send("User created!");
+    const body = req.body;
+    res.json(body);
 };
 
 export default create;
