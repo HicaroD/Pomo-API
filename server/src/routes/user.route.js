@@ -1,8 +1,10 @@
 import {Router} from 'express';
-import create from '../controllers/user.controller.js';
+import userController from '../controllers/user.controller.js';
 
 const router = Router();
 
-router.post("/create", create);
+router.get("/", userController.findAll);
+router.post("/create", userController.create);
+router.patch("/update/:id", userController.update);
 
 export default router;
