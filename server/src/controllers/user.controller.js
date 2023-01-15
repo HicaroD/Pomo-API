@@ -8,6 +8,7 @@ const create = async (req, res) => {
 	res.status(400).send({
 	    message: "send all required fields for registration",
 	});
+	return;
     }
 
     const user = await userService.create(req.body);
@@ -16,6 +17,7 @@ const create = async (req, res) => {
 	res.status(400).send({
 	    message: "Unable to create user",
 	});
+	return;
     }
 
     res.status(201).send({
@@ -37,6 +39,7 @@ const update = async (req, res) => {
 	res.status(400).send({
 	    message: "Send at least one field for updating the user",
 	});
+	return;
     }
 
     const id = req.params.id;
@@ -45,14 +48,16 @@ const update = async (req, res) => {
 	res.status(400).send({
 	    message: "Invalid user ID",
 	});
+	return;
     }
 
-    const user = userService.findById(id);
+    const user = await userService.findById(id);
 
     if(!user) {
 	res.status(400).send({
 	    message: "User not found",
 	});
+	return;
     }
 
     await userService.update(id, name, username, email, password, avatar);
@@ -66,9 +71,34 @@ const findAll = async (_, res) => {
 	res.status(400).send({
 	    message: "No users found",
 	});
+	return;
     }
 
     res.send(users);
 };
 
-export default { create, update, findAll };
+const remove = async (req, res) => {
+    const id = req.params.id;
+
+    if(!(mongoose.Types.ObjectId.isValid(id))) {
+	res.status(400).send({
+	    message: "Invalid user ID",
+	});
+	return;
+    }
+
+    const user = await userService.findById(id);
+
+    if(!user) {
+	res.status(400).send({
+	    message: "User does not exist",
+	});
+	return;
+    }
+
+    await userService.removeById(id);
+
+    res.send({ message: "User deleted successfully" });
+};
+
+export default { create, update, findAll, remove };
