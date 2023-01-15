@@ -6,6 +6,9 @@ const create = (body) => User.create(body);
 
 const findById = (id) => User.findById(id);
 
+// TODO: improve error handling
+const removeById = (id) => User.findOneAndDelete({ _id: id });
+
 const update = (
     id,
     name,
@@ -18,4 +21,4 @@ const update = (
     {name, username, email, password, avatar}
 );
 
-export default {create, update, findById, findAll};
+export default {create, update, findById, findAll, removeById };
