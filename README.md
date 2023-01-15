@@ -1,4 +1,4 @@
-# pomo
+# 🍅 pomo
 
 A Pomodoro app built with ReactJS.
 
