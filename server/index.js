@@ -1,7 +1,10 @@
 import express from 'express';
 import userRouter from './src/routes/user.route.js';
+import connectDatabase from './src/database/database.js'
 
 const PORT = 3000;
+
+connectDatabase();
 
 const app = express();
 app.use(express.json());
