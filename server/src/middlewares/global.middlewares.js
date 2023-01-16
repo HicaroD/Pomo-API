@@ -14,7 +14,6 @@ const isValidId = (req, res, next) => {
 
 const isValidUser = async (req, res, next) => {
     const id = req.params.id;
-
     const user = await userService.findById(id);
 
     if(!user) {
@@ -22,6 +21,10 @@ const isValidUser = async (req, res, next) => {
 	    message: "User not found",
 	});
     }
+
+    req.id = id;
+    req.user = user;
+
     next();
 };
 

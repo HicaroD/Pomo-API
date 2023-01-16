@@ -38,7 +38,7 @@ const update = async (req, res) => {
 	});
     }
 
-    const id = req.params.id;
+    const id = req.id;
 
     await userService.update(id, name, username, email, password, avatar);
     return res.send({message: "User updated"});
@@ -57,13 +57,12 @@ const findAll = async (_, res) => {
 };
 
 const findById = async (req, res) => {
-    const id = req.params.id;
-    const user = await userService.findById(id);
+    const user = req.user;
     return res.send(user);
 };
 
 const remove = async (req, res) => {
-    const id = req.params.id;
+    const id = req.id;
 
     await userService.removeById(id);
 
