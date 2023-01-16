@@ -6,7 +6,6 @@ const create = (body) => User.create(body);
 
 const findById = (id) => User.findById(id);
 
-// TODO: improve error handling
 const removeById = (id) => User.findOneAndDelete({ _id: id });
 
 const update = (
