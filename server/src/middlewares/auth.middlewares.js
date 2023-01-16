@@ -29,7 +29,7 @@ const auth = (req, res, next) => {
 
 	    const user = await userService.findById(decoded.id);
 
-	    if(!user && !user.id) {
+	    if(!user) {
 		return res.status(401).send({ message: "Invalid token" });
 	    }
 	    req.userId = decoded._id;
