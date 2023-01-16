@@ -4,7 +4,7 @@ import express from 'express';
 import connectDatabase from './src/database/database.js';
 
 import authRouter from './src/routes/auth.route.js';
-import swaggerRoute from './src/routes/swagger.route.js';
+import swaggerRoute from './src/routes/swagger.route.cjs';
 import userRouter from './src/routes/user.route.js';
 
 dotenv.config();
