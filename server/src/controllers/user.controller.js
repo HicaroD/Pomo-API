@@ -44,7 +44,6 @@ const update = async (req, res) => {
 	}
 
 	const id = req.id;
-
 	await userService.update(id, name, username, email, password, avatar);
 	return res.send({message: "User updated"});
     } catch (error) {
