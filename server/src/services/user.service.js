@@ -8,8 +8,6 @@ const findById = (id) => User.findById(id);
 
 const findByUsername = (username) => User.findOne({ username });
 
-const findByEmail = (email) => User.findOne({ email });
-
 const removeById = (id) => User.findOneAndDelete({ _id: id });
 
 const update = (
@@ -24,4 +22,4 @@ const update = (
     { name, username, email, password, avatar }
 );
 
-export default { create, update, findById, findAll, removeById, findByEmail, findByUsername };
+export default { create, update, findById, findAll, removeById, findByUsername };

@@ -1,4 +1,5 @@
 import userService from '../services/user.service.js';
+import authService from '../services/auth.service.js';
 
 const create = async (req, res) => {
 	try {
@@ -18,7 +19,7 @@ const create = async (req, res) => {
 			});
 		}
 
-		user = await userService.findByEmail(email);
+		user = await authService.findByEmail(email);
 		if (user) {
 			return res.status(400).send({
 				message: "E-mail already in use",
