@@ -1,122 +1,122 @@
 {
-    "openapi": "3.0.3",
-    "info": {
-	"title": "Pomo API documentation",
-	"description": "API for Pomo app implemented with ExpressJS and documented with Swagger",
-	"contact": {
-	    "email": "hdanrlley1@gmail.com"
-	},
-	"version": "0.0.1"
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pomo API documentation",
+    "description": "API for Pomo app implemented with ExpressJS and documented with Swagger",
+    "contact": {
+      "email": "hdanrlley1@gmail.com"
     },
-    "servers": [
-	{
-	    "url": "localhost:3000/",
-	    "description": "Local server"
-	}
-    ],
-    "paths": {
-	"/user": {
-	  "get": {
-	    "summary": "Search all users",
-	    "description": "Route responsible for fetching all users",
-	    "tags": ["Users"],
-	    "responses": {
-	      "400": {
-		"description": "No users found"
-	      },
-	      "200": {
-		"description": "OK",
-		"content": {
-		  "application/json": {
-		    "schema": {
-		      "type": "array",
-		      "items": {
-			"$ref": "#/components/schemas/User"
-		      }
-		    }
-		  }
-		}
-	      }
-	    }
-	  }
-	},
-	"/user/create": {
-	  "post": {
-	    "summary": "Create a new user",
-	    "description": "Route responsible for creating a new user",
-	    "tags": ["Users"],
-	    "requestBody": {
-	      "content": {
-		"application/json": {
-		  "schema": {
-		    "$ref": "#/components/schemas/User"
-		  },
-		  "examples": {
-		    "Users": {
-		      "value": {
-			"name": "Hícaro Dânrlley",
-			"username": "hicarod",
-			"email": "someemail@gmail.com",
-			"password": "1234567",
-			"avatar": "SOME_IMAGE_LINK"
-		      }
-		    }
-		  }
-		}
-	      }
-	    },
-	    "responses": {
-	      "400": {
-		"description": "Send all required fields"
-	      },
-	      "201": {
-		"description": "Created",
-		"content": {
-		  "application/json": {
-		    "schemma": {
-		      "type": "object",
-		      "$ref": "#/components/schemas/User"
-		    }
-		  }
-		}
-	      }
-	    }
-	  }
-	},
-	"/user/{id}": {},
-	"/user/": {},
-	"/user/": {},
-	"/auth/": {}
-    },
-    "components": {
-	"securitySchemes": {
-	  "bearerAuth": {
-	    "type": "http",
-	    "scheme": "bearer",
-	    "bearerFormat": "JWT"
-	  }
-	},
-	"schemas": {
-	  "User": {
-	    "type": "object",
-	    "properties": {
-	      "name": {
-		"type": "string"
-	      },
-	      "username": {
-		"type": "string"
-	      },
-	      "email": {
-		"type": "string"
-	      },
-	      "password": {
-		"type": "string"
-	      },
-	      "avatar": {
-		"type": "string"
-	      }
-	    }
-	  }
-	}
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "localhost:3000/",
+      "description": "Local server"
     }
+  ],
+  "paths": {
+    "/user": {
+      "get": {
+        "summary": "Search all users",
+        "description": "Route responsible for fetching all users",
+        "tags": ["Users"],
+        "responses": {
+          "400": {
+            "description": "No users found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Route responsible for creating a new user",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "Users": {
+                  "value": {
+                    "name": "Hícaro Dânrlley",
+                    "username": "hicarod",
+                    "email": "someemail@gmail.com",
+                    "password": "1234567",
+                    "avatar": "SOME_IMAGE_LINK"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Send all required fields"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {},
+    "/user/": {},
+    "/user/": {},
+    "/auth/": {}
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
 }
