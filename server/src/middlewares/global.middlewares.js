@@ -28,9 +28,6 @@ const isValidUser = async (req, res, next) => {
       });
     }
 
-    req.id = id;
-    req.user = user;
-
     next();
   } catch (error) {
     return res.status(500).send({ message: error.message });

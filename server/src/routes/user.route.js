@@ -8,7 +8,7 @@ const router = Router();
 router.get("/", authMiddleware.auth, userController.getUser);
 router.get("/all", userController.findAll);
 router.patch(
-  "/update/:id/",
+  "/update/",
   authMiddleware.auth,
   globalMiddlewares.isValidId,
   globalMiddlewares.isValidUser,
