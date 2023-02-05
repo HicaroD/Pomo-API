@@ -8,12 +8,6 @@ const router = Router();
 router.get("/", authMiddleware.auth, userController.getUser);
 router.get("/all", userController.findAll);
 router.post("/create/", globalMiddlewares.areUniqueCredentials, userController.create);
-router.get(
-  "/:id/",
-  globalMiddlewares.isValidId,
-  globalMiddlewares.isValidUser,
-  userController.findById
-);
 router.patch(
   "/update/:id/",
   authMiddleware.auth,

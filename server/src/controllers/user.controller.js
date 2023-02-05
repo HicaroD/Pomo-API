@@ -78,15 +78,6 @@ const findAll = async (_, res) => {
   }
 };
 
-const findById = async (req, res) => {
-  try {
-    const user = req.user;
-    return res.send(user);
-  } catch (error) {
-    return res.status(500).send({ message: error.message });
-  }
-};
-
 const remove = async (req, res) => {
   try {
     const id = req.user._id;
@@ -97,4 +88,4 @@ const remove = async (req, res) => {
   }
 };
 
-export default { getUser, create, update, findAll, remove, findById };
+export default { getUser, create, update, findAll, remove };
