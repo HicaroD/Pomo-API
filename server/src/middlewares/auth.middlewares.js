@@ -35,7 +35,7 @@ const auth = (req, res, next) => {
         if (!user) {
           return res.status(401).send({ message: "Invalid token" });
         }
-        req.userId = decoded._id;
+        req.user = user;
         return next();
       }
     );
