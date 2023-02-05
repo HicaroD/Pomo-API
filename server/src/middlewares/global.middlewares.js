@@ -4,7 +4,7 @@ import authService from "../services/auth.service.js";
 
 const isValidId = (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = req.user._id;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).send({
@@ -19,7 +19,7 @@ const isValidId = (req, res, next) => {
 
 const isValidUser = async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = req.user._id;
     const user = await userService.findById(id);
 
     if (!user) {

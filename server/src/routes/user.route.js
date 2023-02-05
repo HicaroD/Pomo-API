@@ -15,7 +15,7 @@ router.patch(
   userController.update
 );
 router.delete(
-  "/remove/:id/",
+  "/remove/",
   authMiddleware.auth,
   globalMiddlewares.isValidId,
   globalMiddlewares.isValidUser,
