@@ -1,5 +1,15 @@
 import userService from "../services/user.service.js";
-import authService from "../services/auth.service.js";
+
+const getUser = async (req, res) => {
+  try {
+    const user = req.user;
+    return res.send({
+      user,
+    });
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+};
 
 const create = async (req, res) => {
   try {
@@ -8,21 +18,6 @@ const create = async (req, res) => {
     if (!name || !username || !email || !password) {
       return res.status(400).send({
         message: "send all required fields for registration",
-      });
-    }
-
-    // FIXME(hícaro): two query on database for checking these two things. Is that necessary?
-    let user = await userService.findByUsername(username);
-    if (user) {
-      return res.status(400).send({
-        message: "Username already in use",
-      });
-    }
-
-    user = await authService.findByEmail(email);
-    if (user) {
-      return res.status(400).send({
-        message: "E-mail already in use",
       });
     }
 
@@ -59,7 +54,7 @@ const update = async (req, res) => {
       });
     }
 
-    const id = req.id;
+    const id = req.user._id;
     await userService.update(id, name, username, email, password, avatar);
     return res.send({ message: "User updated" });
   } catch (error) {
@@ -94,7 +89,7 @@ const findById = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    const id = req.id;
+    const id = req.user._id;
     await userService.removeById(id);
     return res.send({ message: "User deleted successfully" });
   } catch (error) {
@@ -102,4 +97,4 @@ const remove = async (req, res) => {
   }
 };
 
-export default { create, update, findAll, remove, findById };
+export default { getUser, create, update, findAll, remove, findById };

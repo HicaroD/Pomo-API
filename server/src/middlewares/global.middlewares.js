@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import userService from "../services/user.service.js";
+import authService from "../services/auth.service.js";
 
 const isValidId = (req, res, next) => {
   try {
@@ -36,4 +37,28 @@ const isValidUser = async (req, res, next) => {
   }
 };
 
-export default { isValidId, isValidUser };
+const areUniqueCredentials = async (req, res, next) => {
+  try {
+    const { username, email } = req.body;
+
+    let user = await userService.findByUsername(username);
+    if (user) {
+      return res.status(400).send({
+        message: "Username already in use",
+      });
+    }
+
+    user = await authService.findByEmail(email);
+    if (user) {
+      return res.status(400).send({
+        message: "E-mail already in use",
+      });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+};
+
+export default { isValidId, isValidUser, areUniqueCredentials };

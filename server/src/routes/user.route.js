@@ -5,9 +5,9 @@ import authMiddleware from "../middlewares/auth.middlewares.js";
 
 const router = Router();
 
-// TODO: format this code
-router.get("/", userController.findAll);
-router.post("/create/", userController.create);
+router.get("/", authMiddleware.auth, userController.getUser);
+router.get("/all", userController.findAll);
+router.post("/create/", globalMiddlewares.areUniqueCredentials, userController.create);
 router.get(
   "/:id/",
   globalMiddlewares.isValidId,
