@@ -5,24 +5,17 @@ import authMiddleware from "../middlewares/auth.middlewares.js";
 
 const router = Router();
 
-// TODO: format this code
-router.get("/", userController.findAll);
-router.post("/create/", userController.create);
-router.get(
-  "/:id/",
-  globalMiddlewares.isValidId,
-  globalMiddlewares.isValidUser,
-  userController.findById
-);
+router.get("/", authMiddleware.auth, userController.getUser);
+router.get("/all", userController.findAll);
 router.patch(
-  "/update/:id/",
+  "/update/",
   authMiddleware.auth,
   globalMiddlewares.isValidId,
   globalMiddlewares.isValidUser,
   userController.update
 );
 router.delete(
-  "/remove/:id/",
+  "/remove/",
   authMiddleware.auth,
   globalMiddlewares.isValidId,
   globalMiddlewares.isValidUser,
