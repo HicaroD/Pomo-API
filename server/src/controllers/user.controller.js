@@ -11,39 +11,6 @@ const getUser = async (req, res) => {
   }
 };
 
-const create = async (req, res) => {
-  try {
-    const { name, username, email, password, avatar } = req.body;
-
-    if (!name || !username || !email || !password) {
-      return res.status(400).send({
-        message: "send all required fields for registration",
-      });
-    }
-
-    const newUser = await userService.create(req.body);
-
-    if (!newUser) {
-      return res.status(400).send({
-        message: "Unable to create user",
-      });
-    }
-
-    return res.status(201).send({
-      message: "User created successfully",
-      user: {
-        id: newUser._id,
-        name,
-        username,
-        email,
-        avatar,
-      },
-    });
-  } catch (error) {
-    return res.status(500).send({ message: error.message });
-  }
-};
-
 const update = async (req, res) => {
   try {
     const { name, username, email, password, avatar } = req.body;
@@ -88,4 +55,4 @@ const remove = async (req, res) => {
   }
 };
 
-export default { getUser, create, update, findAll, remove };
+export default { getUser, update, findAll, remove };
